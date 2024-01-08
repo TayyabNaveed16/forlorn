@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import mainMenu from '../images/mainMenu.png';
-import MenuMusic from '../music/Jungle.mp3';
+import ForlornMainTheme from '../music/ForlornMainTheme.mp3';
 import { VolumeSlash, VolumeHigh } from 'iconsax-react';
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
     const audioRef = useRef(null);
 
     useEffect(() => {
-        const audio = audioRef.current || new Audio(MenuMusic);
+        const audio = audioRef.current || new Audio(ForlornMainTheme);
         audio.loop = true; // Enable looping
 
         // Set initial mute state
@@ -46,17 +46,15 @@ function Home() {
             </div>
 
             <div className='flex h-1/3 items-center justify-center'>
-                <h1 onClick={startGame} className="font-serif text-7xl text-slate-400 hover:animate-pulse cursor-pointer">Start Game</h1>
-
-
-
+                <h1 onClick={startGame} className="font-serif text-7xl text-slate-400 hover:text-slate-500 hover:animate-pulse cursor-pointer">Start Game
+                </h1>
             </div>
 
             <div className='flex h-96 items-end justify-end	pr-5'>
-                    <button onClick={toggleMute}>
-                        {isMuted ? <VolumeSlash size="100" color="gray" /> : <VolumeHigh size="100" color="gray" />}
-                    </button>
-                </div>
+                <button onClick={toggleMute}>
+                    {isMuted ? <VolumeSlash size="100" color="gray" /> : <VolumeHigh size="100" color="gray" />}
+                </button>
+            </div>
 
         </div>
     );
