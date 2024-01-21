@@ -21,7 +21,7 @@ function Home() {
             console.error('Autoplay prevented:', error);
         });
 
-        audioRef.current = audio; // Save the audio element in the ref
+        audioRef.current = audio;   // Save the audio element in the ref. We do this to avoid starting the music from the start when the user toggles mute.
 
         return () => {
             // Cleanup if needed
@@ -29,18 +29,18 @@ function Home() {
         };
     }, [isMuted]);
 
+    //Navigate to opening screen on start
     const startGame = () => {
-        // Navigate to the desired route when the user clicks "Start Game"
         navigate('/opening');
     };
 
+    // Toggle mute state
     const toggleMute = () => {
-        // Toggle mute state
         setIsMuted((prevIsMuted) => !prevIsMuted);
     };
 
     return (
-        <div style={containerStyle}>
+        <div className="h-screen bg-cover" style={{ backgroundImage: `url(${mainMenu})` }}>
             <div className='flex h-1/4 items-center justify-center'>
                 <h1 className="font-serif text-9xl text-slate-400 hover:text-slate-700 cursor-pointer">Forlorn</h1>
             </div>
@@ -60,10 +60,5 @@ function Home() {
     );
 }
 
-const containerStyle = {
-    backgroundImage: `url(${mainMenu})`,
-    backgroundSize: 'cover',
-    height: '100vh',
-};
 
 export default Home;

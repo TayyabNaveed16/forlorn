@@ -42,6 +42,7 @@ const Opening = () => {
 
     const continueButton = () => {
 
+        //Sound effects to be played upon certain choices made
         if (calledOutSound === true) {
             const audio = new Audio(callOut);
             audio.play();
@@ -52,16 +53,14 @@ const Opening = () => {
             audio.play();
         }
 
-
+        //Resetting states
         setIsSelected1(false);
         setIsSelected2(false);
         setCalledOutSound(false);
         setFindShelterSound(false); 
-        setStoryIndex((prevIndex) => prevIndex + 1);
 
-        if (storyIndex === 5) {
-            navigate('/theHouse');
-        }
+        //Incrementing storyIndex for next sequence
+        setStoryIndex((prevIndex) => prevIndex + 1);
 
 
     };
@@ -102,23 +101,17 @@ const Opening = () => {
     }
 
 
-    const containerStyle = {
-        backgroundImage: `url(${jungle})`,
-        backgroundSize: 'cover',
-        height: '100vh',
-        position: 'relative',
-    };
-
-
     return (
-        <div style={containerStyle}>
+        <div className="h-screen bg-cover" style={{ backgroundImage: `url(${jungle})` }}>
             <div className="fade-in-text flex h-1/3 items-center justify-center">
+
+                {/* Story Sequence starts here */}
                 {storyIndex === 0 && (
                     <TypeAnimation
                         sequence={[
                             "You wake up with a start. You wrap your arms around yourself to ward off the biting cold. You shiver uncontrollably as you look around.",
                             4000,
-                            "You're in a jungle. The thick foliage beneath and the surrounding chirp of crickets affirms this. You look around but barely see anything. Everything is pitch black. You...",
+                            "You're in a jungle. The thick foliage beneath and the surrounding chirp of crickets affirms this. You look around but can barely see anything due to the multitude of trees, their looming canopies and twisted branches block out most of the sunlight. You...",
                         ]}
                         wrapper="div"
                         speed={60}
@@ -182,7 +175,7 @@ const Opening = () => {
                         sequence={[
                             "You stay quiet. You're unsure of what lurks in the darkness, and you dare not offer it an invitation.",
                             3000,
-                            "Still shivering. You pick yourself up and feel your body for injuries but find none. Your memory eludes you. You cannot recall how you got here. You cannot recall your name, your age, family, or any other details about yourself. You...",
+                            "Still shivering. You pick yourself up and feel your body for injuries but find none. Your memory eludes you. You cannot recall how you got here. You cannot recall your name, your age, family, or any other details about yourself. You reach for your pockets to check if you're carrying a wallet and, consequently, some form of ID, but find nothing there. You...",
                             3000,
                             // "You start walking in the hopes to find shelter, unsure how much longer you'd survive in this cold.",
                             // 3000,
@@ -248,6 +241,10 @@ const Opening = () => {
                     />
                 )}
 
+                {storyIndex === 5 && (
+                            navigate('/theHouse')
+                )}
+
             </div>
 
             {/* Button to Continue */}
@@ -256,7 +253,6 @@ const Opening = () => {
             </button>
 
             {/* Toggle mute button */}
-
             <div className='absolute bottom-0 right-0 pr-5'>
                 <button onClick={toggleMute}>
                     {isMuted ? <VolumeSlash size="100" color="gray" /> : <VolumeHigh size="100" color="gray" />}
