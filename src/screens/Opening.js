@@ -15,73 +15,52 @@ const Opening = () => {
     const [isSelected1, setIsSelected1] = useState(false);
     const [isSelected2, setIsSelected2] = useState(false);
     const [calledOut, setCalledOut] = useState(false);
-    const [calledOutSound, setCalledOutSound] = useState(false);
     const [findShelter, setFindShelter] = useState(false);
-    const [findShelterSound, setFindShelterSound] = useState(false);
     const audioRef = useRef(null);
 
     useEffect(() => {
-        const audio = audioRef.current || new Audio(MenuMusic);
+        const audio = new Audio(MenuMusic);
         audio.loop = true; // Enable looping
-
-        // Set initial mute state
-        audio.muted = isMuted;
 
         // Play the audio
         audio.play().catch((error) => {
             console.error('Autoplay prevented:', error);
         });
 
-        audioRef.current = audio; // Save the audio element in the ref
-
         return () => {
             // Cleanup if needed
             audio.pause();
         };
-    }, [isMuted]);
+    }, []);
 
     const continueButton = () => {
 
-        //Sound effects to be played upon certain choices made
-        if (calledOutSound === true) {
-            const audio = new Audio(callOut);
-            audio.play();
-        }
-
-        if (findShelterSound === true) {
-            const audio = new Audio(walkBushes);
-            audio.play();
-        }
 
         //Resetting states
         setIsSelected1(false);
         setIsSelected2(false);
-        setCalledOutSound(false);
-        setFindShelterSound(false); 
 
         //Incrementing storyIndex for next sequence
         setStoryIndex((prevIndex) => prevIndex + 1);
 
-
     };
 
-    const toggleMute = () => {
-        // Toggle mute state
-        setIsMuted((prevIsMuted) => !prevIsMuted);
-    };
+    // const toggleMute = () => {
+    //     // Toggle mute state
+    //     setIsMuted((prevIsMuted) => !prevIsMuted);
+    // };
+
     // First Choice
     const callDarkness = () => {
         setIsSelected1(true);
         setIsSelected2(false);
         setCalledOut(true);
-        setCalledOutSound(true);
     }
 
     const stayQuiet = () => {
         setIsSelected2(true);
         setIsSelected1(false);
         setCalledOut(false);
-        setCalledOutSound(false);
     }
 
     // Second Choice
@@ -89,44 +68,68 @@ const Opening = () => {
         setIsSelected1(true);
         setIsSelected2(false);
         setFindShelter(false);
-        setFindShelterSound(false);
     }
 
     const shelter = () => {
         setIsSelected2(true);
         setIsSelected1(false);
         setFindShelter(true);
-        setFindShelterSound(true);
 
+    }
+
+    //Callout sound
+    const call = () => {
+        const callout = new Audio(callOut);
+        callout.play();
+        return "call";
+    }
+
+    const walking = () => {
+        const walk = new Audio(walkBushes);
+        walk.play();
+        return "walking";
     }
 
 
     return (
-        <div className="h-screen bg-cover" style={{ backgroundImage: `url(${jungle})` }}>
-            <div className="fade-in-text flex h-1/3 items-center justify-center">
+        <div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(${jungle})` }}>
+            <div className="fade-in-text flex h-3/5 items-center justify-center">
 
                 {/* Story Sequence starts here */}
                 {storyIndex === 0 && (
                     <TypeAnimation
+                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
+
                         sequence={[
-                            "You wake up with a start. You wrap your arms around yourself to ward off the biting cold. You shiver uncontrollably as you look around.",
-                            4000,
-                            "You're in a jungle. The thick foliage beneath and the surrounding chirp of crickets affirms this. You look around but can barely see anything due to the multitude of trees, their looming canopies and twisted branches block out most of the sunlight. You...",
+                            "You wake up with a start. You wrap your arms around yourself to ward off the biting cold. You shiver uncontrollably as you look around."
                         ]}
                         wrapper="div"
                         speed={60}
                         cursor={false}
                         omitDeletionAnimation={true}
-                        style={{ fontSize: '2.5em', textAlign: 'justify', marginTop: '20%', padding: '15%', color: '#94a3b8', display: 'inline-block' }}
                     />
                 )}
 
                 {storyIndex === 1 && (
-                    <div className='justify-center items-center mt-80'>
-                        <h1 className='text-justify font-serif text-7xl text-slate-400 '>You...</h1>
-                        <div className='mt-28'>
+                    <TypeAnimation
+                        className="text-2xl text-justify  text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
+
+                        sequence={[
+                            "You're in a jungle. The thick foliage beneath and the surrounding chirp of crickets affirms this. You look around but can barely see anything due to the multitude of trees, their looming canopies and twisted branches block out most of the sunlight. You..."
+                        ]}
+                        wrapper="div"
+                        speed={60}
+                        cursor={false}
+                        omitDeletionAnimation={true}
+                    />
+                )}
+
+                {storyIndex === 2 && (
+                    <div className='justify-center items-center mt-28 sm:justify-center sm:items-center sm:mt-48'>
+                        <h1 className='ml-2 text-justify font-serif text-4xl text-slate-400 sm:text-justify sm:font-serif sm:text-7xl sm:text-slate-400 '>You...</h1>
+                        <div className=' mt-20 sm:mt-28'>
                             <button
-                                className={`mr-20 font-serif text-4xl text-slate-400 cursor-pointer inline-block 
+                                className={`ml-2 font-serif text-left text-2xl text-slate-400 sm:mr-20 sm:font-serif sm:text-4xl sm:text-slate-400 sm:cursor-pointer sm:inline-block 
                                     ${isSelected1 ? 'border-b-4 border-gray-700' : 'hover:border-b-4 hover:border-b-gray-700 hover:animate-pulse focus:border-b-4 focus:animate-pulse active:border-b-4 active:animate-pulse'}`}
                                 onClick={() => callDarkness()}
                             >
@@ -134,7 +137,7 @@ const Opening = () => {
                             </button>
 
                             <button
-                                className={`ml-20 font-serif text-4xl text-slate-400 cursor-pointer inline-block 
+                                className={` ml-2 mt-14 font-serif text-left text-2xl text-slate-400 sm:ml-20 sm:font-serif sm:text-4xl sm:text-slate-400 sm:cursor-pointer sm:inline-block 
                                     ${isSelected2 ? 'border-b-4 border-gray-700' : 'hover:border-b-4 hover:border-b-gray-700 hover:animate-pulse focus:border-b-4 focus:animate-pulse active:border-b-4 active:animate-pulse'}`}
                                 onClick={() => stayQuiet()}
                             >
@@ -145,10 +148,11 @@ const Opening = () => {
                 )}
 
                 {/* Call Out */}
-                {storyIndex === 2 && calledOut === true && (
+                {storyIndex === 3 && calledOut === true && (
                     <TypeAnimation
+                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
                         sequence={[
-                            "'Hello? Is anyone out there?' you call out.",
+                            `'Hello? Is anyone out there?' you ${call()} out`,
                             3000,
                             "No response.",
                             3000,
@@ -158,20 +162,18 @@ const Opening = () => {
                             3000,
                             "Still shivering. You pick yourself up and feel your body for injuries but find none. Your memory eludes you. You cannot recall how you got here. You cannot recall your name, your age, family, or any other details about yourself. You...",
                             3000,
-                            // "You start walking in the hopes to find shelter, unsure how much longer you'd survive in this cold.",
-                            // 3000,
                         ]}
                         wrapper="div"
                         speed={60}
                         cursor={false}
                         omitDeletionAnimation={true}
-                        style={{ fontSize: '2.5em', marginTop: '20%', textAlign: 'justify', padding: '15%', color: '#94a3b8', display: 'inline-block' }}
                     />
                 )}
 
                 {/* Stay Quiet */}
-                {storyIndex === 2 && calledOut === false && (
+                {storyIndex === 3 && calledOut === false && (
                     <TypeAnimation
+                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
                         sequence={[
                             "You stay quiet. You're unsure of what lurks in the darkness, and you dare not offer it an invitation.",
                             3000,
@@ -184,16 +186,15 @@ const Opening = () => {
                         speed={60}
                         cursor={false}
                         omitDeletionAnimation={true}
-                        style={{ fontSize: '2.5em', marginTop: '20%', textAlign: 'justify', padding: '15%', color: '#94a3b8', display: 'inline-block' }}
                     />
                 )}
 
-                {storyIndex === 3 && (
-                    <div className='justify-center items-center mt-80'>
-                        <h1 className='text-justify font-serif text-7xl text-slate-400 '>You...</h1>
-                        <div className='mt-28'>
+                {storyIndex === 4 && (
+                    <div className='justify-center items-center mt-28 sm:justify-center sm:items-center sm:mt-48'>
+                        <h1 className='ml-2 text-justify font-serif text-4xl text-slate-400 sm:text-justify sm:font-serif sm:text-7xl sm:text-slate-400 '>You...</h1>
+                        <div className=' mt-20 sm:mt-28'>
                             <button
-                                className={`mr-20 font-serif text-4xl text-slate-400 cursor-pointer inline-block 
+                                className={`ml-2 font-serif text-left text-xl text-slate-400 sm:mr-20 sm:font-serif sm:text-4xl sm:text-slate-400 sm:cursor-pointer sm:inline-block 
                                     ${isSelected1 ? 'border-b-4 border-gray-700' : 'hover:border-b-4 hover:border-b-gray-700 hover:animate-pulse focus:border-b-4 focus:animate-pulse active:border-b-4 active:animate-pulse'}`}
                                 onClick={() => weapon()}
                             >
@@ -201,8 +202,8 @@ const Opening = () => {
                             </button>
 
                             <button
-                                className={`ml-20 font-serif text-4xl text-slate-400 cursor-pointer inline-block 
-                                    ${isSelected2 ? 'border-b-4 border-gray-700' : 'hover:border-b-4 hover:border-b-gray-700 hover:animate-pulse focus:border-b-4 focus:animate-pulse active:border-b-4 active:animate-pulse'}`}
+                                className={` ml-2 mt-14 font-serif text-left text-xl text-slate-400 sm:ml-20 sm:font-serif sm:text-4xl sm:text-slate-400 sm:cursor-pointer sm:inline-block 
+                                ${isSelected2 ? 'border-b-4 border-gray-700' : 'hover:border-b-4 hover:border-b-gray-700 hover:animate-pulse focus:border-b-4 focus:animate-pulse active:border-b-4 active:animate-pulse'}`}
                                 onClick={() => shelter()}
                             >
                                 Look for shelter. It's getting cold.
@@ -211,22 +212,24 @@ const Opening = () => {
                     </div>
                 )}
 
-                {storyIndex === 4 && findShelter === true && (
+                {storyIndex === 5 && findShelter === true && (
                     <TypeAnimation
+                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
                         sequence={[
-                            "You start walking in the hopes to find shelter, unsure how much longer you'd survive in this cold. Continue...",
+                            `You start ${walking()} in the hopes to find shelter, unsure how much longer you'd survive in this cold. Continue...`,
                             3000,
                         ]}
                         wrapper="div"
                         speed={60}
                         cursor={false}
                         omitDeletionAnimation={true}
-                        style={{ fontSize: '2.5em', marginTop: '20%', textAlign: 'justify', padding: '15%', color: '#94a3b8', display: 'inline-block' }}
+
                     />
                 )}
 
-                {storyIndex === 4 && findShelter === false && (
+                {storyIndex === 5 && findShelter === false && (
                     <TypeAnimation
+                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
                         sequence={[
                             "You start looking for something to defend yourself with. Minutes pass as you scavenge. The immense cold only stems your efforts.",
                             3000,
@@ -237,27 +240,28 @@ const Opening = () => {
                         speed={60}
                         cursor={false}
                         omitDeletionAnimation={true}
-                        style={{ fontSize: '2.5em', marginTop: '20%', textAlign: 'justify', padding: '15%', color: '#94a3b8', display: 'inline-block' }}
                     />
                 )}
 
-                {storyIndex === 5 && (
-                            navigate('/theHouse')
+                {/* Navigating to the next screen and taking our choices too. */}
+                {storyIndex === 6 && (
+                    navigate('/theHouse', {
+                        state: {
+                            calledOut,
+                            findShelter,
+                        }
+                    })
                 )}
 
             </div>
 
             {/* Button to Continue */}
-            <button className='absolute inset-x-0 bottom-32 font-serif text-4xl text-slate-200 hover:animate-pulse cursor-pointer' onClick={continueButton}>
-                Continue
-            </button>
-
-            {/* Toggle mute button */}
-            <div className='absolute bottom-0 right-0 pr-5'>
-                <button onClick={toggleMute}>
-                    {isMuted ? <VolumeSlash size="100" color="gray" /> : <VolumeHigh size="100" color="gray" />}
+            <div className='absolute inset-x-0 bottom-32 text-center'>
+                <button className='font-serif text-2xl text-slate-200 sm:font-serif sm:text-4xl sm:text-slate-200 sm:hover:animate-pulse sm:cursor-pointer' onClick={continueButton}>
+                    Continue
                 </button>
             </div>
+
         </div >
     );
 };
