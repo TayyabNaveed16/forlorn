@@ -198,7 +198,7 @@ const Opening = () => {
                                     ${isSelected1 ? 'border-b-4 border-gray-700' : 'hover:border-b-4 hover:border-b-gray-700 hover:animate-pulse focus:border-b-4 focus:animate-pulse active:border-b-4 active:animate-pulse'}`}
                                 onClick={() => weapon()}
                             >
-                                Look for something to defend yourself with.
+                                Search for a Weapon.
                             </button>
 
                             <button

@@ -1,12 +1,23 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import Home from './screens/Home';
 import Opening from './screens/Opening';
 import House from './screens/House';
 import FrontDoor from './screens/FrontDoor';
 import GameOver from './screens/GameOver';
 
+
+
 function App() {
+
+  useEffect(() => {
+    document.title = 'Forlorn';
+    return () => {
+      document.title = 'Forlorn';
+    };
+  }, []);
+
   return (
     <Router>
           <Routes>
