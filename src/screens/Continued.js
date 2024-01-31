@@ -39,7 +39,7 @@ function Continued() {
     return (
         <div className="h-screen bg-cover flex flex-col " style={{ backgroundImage: `url(${mainMenu})` }}>
             <div className='flex h-3/5 items-center justify-center'>
-                <h1 className="font-serif text-5xl text-slate-400 cursor-pointer sm:text-8xl sm:text-slate-400 sm:hover:text-slate-700 sm:cursor-pointer sm:font-serif ">To be continued?</h1>
+                <h1 className="font-serif text-center text-6xl text-slate-400 cursor-pointer sm:text-8xl sm:text-slate-400 sm:hover:text-slate-700 sm:cursor-pointer sm:font-serif ">To be continued?</h1>
             </div>
 
             {/* Button to Continue */}

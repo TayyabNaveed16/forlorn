@@ -39,7 +39,7 @@ function GameOver() {
     return (
         <div className="h-screen bg-cover flex flex-col " style={{ backgroundImage: `url(${mainMenu})` }}>
             <div className='flex h-3/5 items-center justify-center'>
-                <h1 className="font-serif text-7xl text-slate-400 cursor-pointer sm:text-9xl sm:text-slate-400 sm:hover:text-slate-700 sm:cursor-pointer sm:font-serif ">Game over</h1>
+                <h1 className="font-serif text-center text-6xl text-slate-400 cursor-pointer sm:text-9xl sm:text-slate-400 sm:hover:text-slate-700 sm:cursor-pointer sm:font-serif ">Game over</h1>
             </div>
 
             {/* Button to Continue */}
