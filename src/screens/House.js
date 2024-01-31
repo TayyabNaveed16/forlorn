@@ -87,14 +87,14 @@ const House = () => {
             <div className="fade-in-text flex h-3/5 items-center justify-center">
                 {storyIndex === 0 && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
+                        className="text-2xl text-center text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
 
                         sequence={[
                             "After walking for hours, you finally see a house in the distance. Relieved, you pick your pace and head towards it. ",
                             3000,
-                            "Your relief is but fleeting. Upon closer inspection, the house appears decrepit and abandoned. Some of the windows have been boarded up, and clusters of the balcony balusters are either broken, disjointed, or missing entirely. An ominous fog surrounds the house, almost as if adumbrating danger.",
+                            "Your relief is but fleeting. Upon closer inspection, the house appears decrepit and abandoned. Some of the windows have been boarded up, and clusters of the balcony balusters are either broken, disjointed, or missing entirely.",
                             4000,
-                            "At first, you hesitate, but another shiver serves as a stark reminder of how little choice you actually have.",
+                            "An ominous fog surrounds the house, almost as if adumbrating danger. At first, you hesitate, but another shiver serves as a stark reminder of how little choice you actually have.",
                             3000,
                             "You finally muster up the courage to approach the house. As you draw nearer, it dawns on you that you could..."
                         ]}
@@ -131,7 +131,7 @@ const House = () => {
 
                 {storyIndex === 2 && tookFrontEntrance == false && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
+                        className="text-2xl text-center text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
                         sequence={[
                             "You walk over to the other side of the house and locate the back door.",
                             3000,
@@ -147,7 +147,7 @@ const House = () => {
 
                 {storyIndex === 2 && tookFrontEntrance == true && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
+                        className="text-2xl text-center text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
                         sequence={[
                             `You walk up to the front door and ${knock()}`,
                             3000,
@@ -163,7 +163,7 @@ const House = () => {
 
                 {storyIndex === 3 && tookFrontEntrance == false && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
+                        className="text-2xl text-center text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
                         sequence={[
                             `The door ${creak()} opens as you try the knob.`,
                             3000,
@@ -179,7 +179,7 @@ const House = () => {
 
                 {storyIndex === 3 && tookFrontEntrance == true && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
+                        className="text-2xl text-center text-slate-200 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-200 sm:inline-block"
                         sequence={[
                             `You ${knock()} again.`,
                             3000,
@@ -199,12 +199,20 @@ const House = () => {
 
 
                 {/* Navigating to the next screen and taking our choices too. */}
-                {storyIndex === 4 && (
+                {storyIndex === 4 && tookFrontEntrance == true && (
                     navigate('/FrontDoor', {
                         state: {
                             calledOut,
                             findShelter,
-                            tookFrontEntrance,
+                        }
+                    })
+                )}
+
+                {storyIndex === 4 && tookFrontEntrance == false && (
+                    navigate('/BackDoor', {
+                        state: {
+                            calledOut,
+                            findShelter,
                         }
                     })
                 )}

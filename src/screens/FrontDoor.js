@@ -87,7 +87,7 @@ const FrontDoor = () => {
 
                         sequence={[
                             `You desperately claw at the sides of the bear trap, trying to yank it open. You can't help but ${whimper()}.`,
-                            3000,
+                            4000,
                             "Despite your struggles, your leg remains ensnared, and the pitch-black surroundings offer no assistance.",
                             4000,
                             "After minutes of agonizing strife, you start feeling lightheaded. The loss of blood is taking its toll. You drift in and out of consciousness until the pain finally ebbs away, silencing your whimpers.",

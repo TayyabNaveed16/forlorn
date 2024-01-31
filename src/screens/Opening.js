@@ -98,7 +98,7 @@ const Opening = () => {
                 {/* Story Sequence starts here */}
                 {storyIndex === 0 && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
+                        className="text-2xl text-center text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
 
                         sequence={[
                             "You wake up with a start. You wrap your arms around yourself to ward off the biting cold. You shiver uncontrollably as you look around."
@@ -112,7 +112,7 @@ const Opening = () => {
 
                 {storyIndex === 1 && (
                     <TypeAnimation
-                        className="text-2xl text-justify  text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
+                        className="text-2xl text-center text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
 
                         sequence={[
                             "You're in a jungle. The thick foliage beneath and the surrounding chirp of crickets affirms this. You look around but can barely see anything due to the multitude of trees, their looming canopies and twisted branches block out most of the sunlight. You..."
@@ -150,7 +150,7 @@ const Opening = () => {
                 {/* Call Out */}
                 {storyIndex === 3 && calledOut === true && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
+                        className="text-2xl text-center text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
                         sequence={[
                             `'Hello? Is anyone out there?' you ${call()} out`,
                             3000,
@@ -173,13 +173,13 @@ const Opening = () => {
                 {/* Stay Quiet */}
                 {storyIndex === 3 && calledOut === false && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
+                        className="text-2xl text-center text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
                         sequence={[
                             "You stay quiet. You're unsure of what lurks in the darkness, and you dare not offer it an invitation.",
                             3000,
-                            "Still shivering. You pick yourself up and feel your body for injuries but find none. Your memory eludes you. You cannot recall how you got here. You cannot recall your name, your age, family, or any other details about yourself. You reach for your pockets to check if you're carrying a wallet and, consequently, some form of ID, but find nothing there. You...",
+                            "Still shivering. You pick yourself up and feel your body for injuries but find none. Your memory eludes you. You cannot recall how you got here. You cannot recall your name, your age, family, or any other details about yourself. You reach for your pockets to check if you're carrying a wallet and, consequently, some form of ID, but find nothing there.",
                             3000,
-                            // "You start walking in the hopes to find shelter, unsure how much longer you'd survive in this cold.",
+                            "It dawns on you that you're vulnerable. You're also terribly cold. You..."
                             // 3000,
                         ]}
                         wrapper="div"
@@ -214,7 +214,7 @@ const Opening = () => {
 
                 {storyIndex === 5 && findShelter === true && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
+                        className="text-2xl text-center text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
                         sequence={[
                             `You start ${walking()} in the hopes to find shelter, unsure how much longer you'd survive in this cold. Continue...`,
                             3000,
@@ -229,7 +229,7 @@ const Opening = () => {
 
                 {storyIndex === 5 && findShelter === false && (
                     <TypeAnimation
-                        className="text-2xl text-justify text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
+                        className="text-2xl text-center text-slate-400 mt-10 mx-8 inline-block sm:text-5xl sm:justify-center sm:mt-10 sm:mx-36 sm:text-slate-400 sm:inline-block"
                         sequence={[
                             "You start looking for something to defend yourself with. Minutes pass as you scavenge. The immense cold only stems your efforts.",
                             3000,
